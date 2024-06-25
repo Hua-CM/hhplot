@@ -17,9 +17,9 @@ plot_go<-function(GO_list){
     table() %>%
     as.data.frame() %>%
     `names<-`(c('GO', 'tot_num')) %>%
-    right_join(hhplot:::GO_lev2) %>% 
-    arrange(lev, tot_num) %>%
-    filter(!is.na(tot_num))
+    dplyr::right_join(GO_lev2) %>% 
+    dplyr::arrange(lev, tot_num) %>%
+    dplyr::filter(!is.na(tot_num))
   plot_data$Description <- factor(plot_data$Description, levels = plot_data$Description)
   p_go <- ggplot(plot_data, aes(y=Description, x=tot_num, fill=lev)) +
     geom_col() +
